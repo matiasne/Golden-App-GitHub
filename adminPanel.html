@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CampoApp</title>
+		
+		<!--meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+		<meta charset="UTF-8">
+		
+		<link href='//fonts.googleapis.com/css?family=Lato:900,400' rel='stylesheet' type='text/css'>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/consulta.css">
+
+		<script src="js/consultas/jquery.min.js"></script>
+		
+	</head>
+<body>
+	<header>	
+		<nav class="navbar navbar-inverse bg-inverse ">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">
+			      	<span class='glyphicon glyphicon-user' aria-hidden='true'></span>
+			      </a>	      
+			    </div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">		      	      
+			      <ul class="nav navbar-nav navbar-right">	
+						<li>
+							<a id="btn-consulta-estadisticas" class="btn" data-toggle="collapse" data-target=".nav-collapse.in">
+								<span class='glyphicon glyphicon-search' aria-hidden='true'></span>Estadisticas
+							</a> 
+						</li>			      	  
+				      	<li>
+				      		<a id="btn-logout" class="btn" data-toggle="collapse" data-target=".nav-collapse.in" onclick="logOut()">
+				      			<span class='glyphicon glyphicon-search' aria-hidden='true'></span>LOGOUT
+				      		</a> 
+						  </li> 
+						  
+						  
+				    </ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>	
+	</header>
+
+	<div id="administracion">
+		
+		<div class="container">
+			
+			<div class='col-sm-12'></div>
+			<form id="form-consulta-usuario" class='form-horizontal' action='includes/administracion/consulta-usuario.inc.php' method='POST'>
+
+				<div class='form-group'>
+					<label class='control-label col-sm-2' for='cuit'>Nombre de usuario:</label>
+					<div class='col-sm-6'>
+						<input id='usuario-nombre' class='form-control' type='text' name='usuario-nombre' placeholder='Ingrese el nombre de usuario'>
+					</div>
+				</div>
+				<div class='form-group'>
+					<div class='col-sm-offset-2 col-sm-10'>
+						<button class='btn btn-default'>Consultar</button> 
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div id="seccion-usuario-existente">
+			<div class="container">
+				<h3>El usuario ya existe asociado a <div id="razon-social"></div></h3>
+				<form id="actualizar-usuario" class='form-horizontal' action='includes/administracion/cambio-contrasena.inc.php' method='POST'>
+					<h3>Cambiar contraseña</h3>
+					<div class='form-group'>
+						<label class='control-label col-sm-2' for='contrasena'>Contraseña:</label>
+						<div class='col-sm-6'>
+							<input id='contrasena-nueva' class='form-control' type='text' name='contrasena'>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class='control-label col-sm-2' for='confirmar-contrasena'>Confirmar Contraseña</label>
+						<div class='col-sm-6'>
+							<input id='conf-contrasena-nueva' class='form-control' type='text' name='confirmar-contrasena'>
+						</div>
+					</div>
+					<div class='form-group'>
+					<div class='col-sm-offset-2 col-sm-10'>
+						<button class='btn btn-default'>Actualizar</button> 
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="seccion-nuevo-usuario">
+			<div class="container">
+				<h3>El usuario no existe</h3>
+				<form id="signup-user" class='form-horizontal' action='includes/administracion/signup-admin.inc.php' method='POST'>			
+					<div class='form-group'>
+						<label class='control-label col-sm-2' for='usuario'>Numero de cuit:</label>
+						<div class='col-sm-6'>
+							<input id='cuit-nuevo' class='form-control' type='text' name='usuario' placeholder='Ingrese el nuevo usuario'>
+						</div>
+					</div>					
+					<div class='form-group'>
+						<div class='col-sm-offset-2 col-sm-10'>
+							<button class='btn btn-default'>Crear</button> 
+						</div>
+					</div>
+				</form>
+				<h3><div id="razon-social"></div></h3>
+			</div>
+		</div>
+
+		<div id="seccion-estadisticas">			
+			<div class="container">	
+
+				<div class="row">
+					<button type="button" class="btn btn-primary btn-lg center-block" data-toggle="modal" data-target="#modalEstadisticas">
+					Realizar consulta
+					</button>
+				</div>
+
+				<div class="row">
+					<div class="chart-container" style="position: relative; height:40vh; width:20vw">
+						<canvas id="myChart" ></canvas>			
+					</div>
+
+					<div class="chart-container" style="position: relative; height:40vh; width:60vw">
+						<canvas id="myChart2"></canvas>			
+					</div>
+				</div>
+				<div id="contenedor-grafico">
+					<canvas id="myChart3" width="200" height="200"></canvas>			
+				</div>
+
+				
+				
+				<div id="tabla-consulta-estadisticas" class="row top-buffer">
+					<div id="table-scroll" class="table-wrapper">		     
+						<table class="table table-condensed table-responsive tabla-consulta" id="tabla-estadisticas">
+							<thead>
+							<tr>								
+								<td>Cuit</td>		        
+								<td>Razon Social</td>
+								<td>Accion</td>	
+								<td>Veces</td>					
+							</tr>
+							</thead>
+							<tbody id="body-tabla-estadisticas">			    
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalEstadisticas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <h4 class="modal-title" id="myModalLabel">Realizar consulta</h4>
+			</div>
+			<div class="modal-body">
+			  <form id="form-consulta-estadisticas" class='form-inline' action='includes/consultas/consulta-estadisticas.php' method='POST'>		
+				  <div class="form-group">
+						<label for="fechaDesde">Desde</label>
+						<input class="form-control" type="date" value="2017-01-01" id="fechaDesde" name="fechaDesde">
+					</div>
+					<div class="form-group">
+						<label for="fechaHasta">Hasta</label>
+						<input class="form-control" type="date" value="2018-01-01" id="fechaHasta" name="fechaHasta">
+				  </div>			
+					<div class="modal-footer">
+					  <button class="btn btn-default" data-dismiss="modal">Close</button>
+					  <button id="btn-solicitar-estadistica" class="btn btn-primary">Solicitar</button>
+				   </div>
+			  </form>
+			</div>      
+		  </div>
+		</div>
+	  </div>
+
+	  <!-- Bootstrap-->>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/Chart.bundle.min.js"></script>
+	<script src="js/administracion/pantallas.js"></script>
+	<script src="js/administracion/administracion.js"></script>
+	<script src="js/administracion/estadisticas.js"></script>
+	
+	<script>
+			
+			</script>
+</body>
+
+</html>

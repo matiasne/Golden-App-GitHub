@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CampoApp </title>
+	
+	<!--meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+	<meta charset="UTF-8">
+	
+	<link href='//fonts.googleapis.com/css?family=Lato:900,400' rel='stylesheet' type='text/css'>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/consulta.css">
+	<script src="js/consultas/jquery.min.js"></script>	
+</head>
+
+<body>
+<div class="loader">
+	<div class="wrapper">
+	    <svg class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206" preserveAspectRatio="none">
+	        <path class="middle" d="M120 0H0v206h120V0zM77.1 133.2C87.5 140.9 92 145 92 152.6V178H28v-25.4c0-7.6 4.5-11.7 14.9-19.4 6-4.5 13-9.6 17.1-17 4.1 7.4 11.1 12.6 17.1 17zM60 89.7c-4.1-7.3-11.1-12.5-17.1-17C32.5 65.1 28 61 28 53.4V28h64v25.4c0 7.6-4.5 11.7-14.9 19.4-6 4.4-13 9.6-17.1 16.9z"/>
+	        <path class="outer" d="M93.7 95.3c10.5-7.7 26.3-19.4 26.3-41.9V0H0v53.4c0 22.5 15.8 34.2 26.3 41.9 3 2.2 7.9 5.8 9 7.7-1.1 1.9-6 5.5-9 7.7C15.8 118.4 0 130.1 0 152.6V206h120v-53.4c0-22.5-15.8-34.2-26.3-41.9-3-2.2-7.9-5.8-9-7.7 1.1-2 6-5.5 9-7.7zM70.6 103c0 18 35.4 21.8 35.4 49.6V192H14v-39.4c0-27.9 35.4-31.6 35.4-49.6S14 81.2 14 53.4V14h92v39.4C106 81.2 70.6 85 70.6 103z"/>
+	    </svg>
+	</div>
+</div>
+
+
+
+<div id="pantalla-login">
+	<div class='container center-container'>
+		<img src="images/logo_golden.png" class="img-responsive center-block" id="logo-golden">
+		<form id="form-login" class='form-horizontal' action='http://www.goldenpeanut.com.ar/login/usuarios.php/login' method='POST'>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input class='form-control' type='text' name='nombre' placeholder='Ingrese su usuario'>
+				</div>
+			</div>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input class='form-control' type='password' name='contrasena' placeholder='Ingrese su contraseña'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class='col-sm-12'>
+					<button class='btn btn-primary btn-lg btn-block'>LOGIN</button> 						
+				</div>
+			</div>	
+			<div class='form-group'>
+				<div class='col-sm-6'>		
+					<div class='checkbox'>
+					    <label>
+					      <input type='checkbox' name='recordar'> Recordar Contrasena
+					    </label>
+					  </div>
+				</div>
+				<div class='col-sm-6'>		
+					<p class="text-right">Olvidaste tu contraseña?</p>
+				</div>
+			</div>	
+		</form>
+	</div>
+</div>
+
+
+<div id="pantalla-tablas">
+	<header>	
+		<nav class="navbar navbar-inverse bg-inverse ">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">
+		      	<span class='glyphicon glyphicon-user' aria-hidden='true'></span>
+		      </a>	 
+
+		    </div>
+		    <div id="barra-usuario"></div>   
+	<!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">		      	      
+		      <ul class="nav navbar-nav navbar-right">	
+		      		
+		      		<li>		      	   
+			      		<a id="btn-config" class="btn" data-toggle="collapse" data-target=".nav-collapse.in">
+			      			<span class='glyphicon glyphicon-cog' aria-hidden='true'></span>Configuración
+			      		</a>			      	
+			      	</li>
+			      	<li>		      	   
+			      		<a id="btn-print" class="btn" data-toggle="collapse" data-target=".nav-collapse.in">
+			      			<span class='glyphicon glyphicon-print' aria-hidden='true'></span>Imprimir
+			      		</a>			      	
+			      	</li>
+		      		<li>		      	   
+			      		<a id="btn-exportar" class="btn" data-toggle="collapse" data-target=".nav-collapse.in">
+			      			<span class='glyphicon glyphicon-save-file' aria-hidden='true'></span>Exportar
+			      		</a>			      	
+			      	</li> 			      	
+			      	<li>		      	   
+			      		<a id="btn-volver" class="btn" data-toggle="collapse" data-target=".nav-collapse.in">
+			      			<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>Volver
+			      		</a>			      	
+			      	</li>	  
+			      	<li>
+			      		<a id="btn-logout" class="btn" data-toggle="collapse" data-target=".nav-collapse.in" onclick="logOut()">
+			      			<span class='glyphicon glyphicon-search' aria-hidden='true'></span>Logout
+			      		</a> 
+			      	</li>      
+			    </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>	
+	</header>
+
+	<div id="seccion-inicio">
+		<div class='container'>
+			<img src="images/logo_golden.png" class="img-responsive center-block">
+			<div class="row top-buffer">
+				<div class='col-sm-6' id="btn-cuaderno-campo">
+					<button  class='btn btn-primary btn-lg btn-block'>CUADERNO DE CAMPO</button>
+				</div>
+				<div class='col-sm-6' id="btn-consulta-entrega">
+					<button  class='btn btn-primary btn-lg btn-block'>CONSULTA DE ENTREGA</button>
+				</div>
+				<div class='col-sm-6' id="btn-consulta-pago">
+					<button  class='btn btn-primary btn-lg btn-block'>CONSULTA DE PAGO</button>
+				</div>
+				
+			</div>
+
+			<div class="row top-buffer">
+				<div class="col-sm-4">
+					<a href="http://www.bna.com.ar/"><img src="images/01_nacion.png" class="img-responsive center-block"></a>
+				</div>
+				<div class="col-sm-4">
+					<a href=" http://www.smn.gov.ar/"><img src="images/02_smn.png" class="img-responsive center-block"></a>
+				</div>
+				<div class="col-sm-4">
+					<a href="https://weather.com/es-US"><img src="images/03_twch.png" class="img-responsive center-block"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+		  <!-- Tab panes -->
+	<div id="seccion-consulta">	
+		<div class="container">	
+			<div class="row">
+				<button type="button" class="btn btn-primary btn-lg center-block" data-toggle="modal" data-target="#modalConsulta">
+				  Realizar consulta
+				</button>
+			</div>			 
+		</div>
+		<div class="container">
+			<div class="row">
+				Contrato: <div id="numero-contrato-titulo"></div>
+			</div>
+		</div>
+
+			<!-- Nav tabs -->
+		<ul class="nav nav-tabs top-buffer" role="tablist">
+			<li role="presentation" class="active"><a href="#tabla" aria-controls="home" role="tab" data-toggle="tab">Cartas Porte</a></li>
+			<li role="presentation"><a href="#totales" aria-controls="profile" role="tab" data-toggle="tab">Totales</a></li>
+		</ul>  
+		<div class="container">			
+			<div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="tabla">
+			    	<div class="row">
+			    		<div class="col-sm-4">
+			    			<h4>Mani en caja</h4>
+			    		</div>
+			    		<div class="col-sm-8">					    	
+							<button type="button" class="btn btn-primary pull-right" id="btn-scroll-derecha">
+						  		<span class='glyphicon glyphicon-forward' aria-hidden='true'></span>
+							</button>
+							<button type="button" class="btn btn-primary pull-right" id="btn-scroll-izquierda">
+						  		<span class='glyphicon glyphicon-backward' aria-hidden='true'></span>
+							</button>
+						</div>
+						
+					</div>
+
+			    	<div id="tabla-consulta-entrega" class="row top-buffer">
+						<div id="table-scroll" class="table-wrapper">		     
+							<table class="table table-condensed table-responsive tabla-consulta" id="tabla-consulta">
+								<thead>
+								  <tr>
+								    <th class="headcol">Fecha</th>
+								    <td>Tipo</td>		        
+								    <td>Cartaporte</td>
+								    <td>Kg. Neto</td>
+								    <td>%Hdad</td>
+								    <td>%Merma Humedad</td>
+								    <td>%Merma Tierra</td>
+								    <td>%Merma Cpos. ext.</td>
+								    <td>Kg Secos y Limios</td>
+								    <td>%Sueltos</td>
+								    <td>%Mani</td>
+								    <td>%Confiteria</td>
+								    <td>Nro Certificado</td>
+								    <td>Kilos Secos</td>
+								    <td>Nombre del Campo</td>
+								  </tr>
+								</thead>
+								<tbody id="body-tabla-consulta">			    
+								</tbody>
+							</table>
+						</div>
+					</div>
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="totales">
+			    	<h4>Totales</h4>
+					<div id="tabla-consulta-totales" class="row top-buffer">
+					<div id="table-scroll" class="table-wrapper">		     
+					  <table class="table table-condensed table-responsive tabla-consulta" id="tabla-totales">
+					    <thead>
+					      	<tr>
+					        	<th>Dato</th>
+					        	<th>Kilogramos</th>
+					        	<th>Promedio</th>
+					      	</tr>
+					    </thead>
+					    <tbody>
+					    	<tr>
+						    	<td>Total Kilogramos Netos</td>
+						    	<td><div id="sumatoria-kgneto" class='text-right'></div></td>
+						    	<td></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Total Kilogramos Limpios y Secos</td>
+						    	<td><div id="sumatoria-kgSecoLimpio" class='text-right'></div></td>
+						    	<td></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % Mani</td>
+						    	<td><div id="sumatoria-mani" class='text-right'></div></td>
+						    	<td><div id="pp-mani" class='text-right'></div></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % G. Sueltos</td>
+						    	<td><div id="sumatoria-gsuelto" class='text-right'></div></td>
+						    	<td><div id="pp-gsuelto" class='text-right'></div></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % Confiteria</td>
+						    	<td><div id="sumatoria-confiteria" class='text-right'></div></td>
+						    	<td><div id="pp-confiteria" class='text-right'></div></td>
+					    	</tr>		    
+					    </tbody>
+				  	</table>
+				  	</div>
+				  	</div>
+			  	
+			    	<h4>Totales Propios</h4>
+					<div id="tabla-consulta-totales-propios" class="row top-buffer">
+					<div id="table-scroll" class="table-wrapper">		     
+					  <table class="table table-condensed table-responsive tabla-consulta" id="tabla-totales-propios">
+					    <thead>
+					      	<tr>
+					        	<th>Dato</th>
+					        	<th>Kilogramos</th>
+					        	<th>Promedio</th>
+					      	</tr>
+					    </thead>
+					    <tbody>
+					    	<tr>
+						    	<td>Total Kilogramos Netos</td>
+						    	<td><div id="sumatoria-kgneto-propios" class='text-right'></div></td>
+						    	<td></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Total Kilogramos Limpios y Secos</td>
+						    	<td><div id="sumatoria-kgSecoLimpio-propios" class='text-right'></div></td>
+						    	<td></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % Mani</td>
+						    	<td><div id="sumatoria-mani-propios" class='text-right'></div></td>
+						    	<td><div id="pp-mani-propios" class='text-right'></div></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % G. Sueltos</td>
+						    	<td><div id="sumatoria-gsuelto-propios" class='text-right'></div></td>
+						    	<td><div id="pp-gsuelto-propios" class='text-right'></div></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % Confiteria</td>
+						    	<td><div id="sumatoria-confiteria-propios" class='text-right'></div></td>
+						    	<td><div id="pp-confiteria-propios" class='text-right'></div></td>
+					    	</tr>		    
+					    </tbody>
+				  	</table>
+				  	</div>
+				  	</div>
+			  	
+			    	<h4>Totales Terceros</h4>
+					<div id="tabla-consulta-totales-terceros" class="row top-buffer">
+					<div id="table-scroll" class="table-wrapper">		     
+					  <table class="table table-condensed table-responsive tabla-consulta" id="tabla-totales-terceros">
+					    <thead>
+					      	<tr>
+					        	<th>Dato</th>
+					        	<th>Kilogramos</th>
+					        	<th>Promedio</th>
+					      	</tr>
+					    </thead>
+					    <tbody>
+					    	<tr>
+						    	<td>Total Kilogramos Netos</td>
+						    	<td><div id="sumatoria-kgneto-terceros" class='text-right'></div></td>
+						    	<td></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Total Kilogramos Limpios y Secos</td>
+						    	<td><div id="sumatoria-kgSecoLimpio-terceros" class='text-right'></div></td>
+						    	<td></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % Mani</td>
+						    	<td><div id="sumatoria-mani-terceros" class='text-right'></div></td>
+						    	<td><div id="pp-mani-terceros" class='text-right'></div></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % G. Sueltos</td>
+						    	<td><div id="sumatoria-gsuelto-terceros" class='text-right'></div></td>
+						    	<td><div id="pp-gsuelto-terceros" class='text-right'></div></td>
+					    	</tr>
+					    	<tr>
+						    	<td>Promedio Ponderado % Confiteria</td>
+						    	<td><div id="sumatoria-confiteria-terceros" class='text-right'></div></td>
+						    	<td><div id="pp-confiteria-terceros" class='text-right'></div></td>
+					    	</tr>		    
+					    </tbody>
+				  	</table>
+				  	</div>
+				  	</div>
+			  	</div>	    
+			</div>	
+		</div>
+	</div>
+
+	<div id="seccion-pagos">
+		<div class="container">	
+			<button type="button" class="btn btn-primary btn-lg center-block" data-toggle="modal" data-target="#modalFiltroPagos">
+		  		Realizar consulta
+			</button>		
+		</div>
+		<div class="container">
+			<h4>Pagos</h4>
+			<div id="table-wrapper" class="row top-buffer">
+				<div id="table-scroll" class="table-wrapper">		     
+					<table class="table table-condensed table-responsive tabla-consulta">
+					    <thead>
+					      	<tr>
+					        	<th>Emision</th>
+					        	<th>Comprobante</th>
+					        	<th>Numero</th>
+					        	<th>Total</th>
+					        	<th></th>
+					      	</tr>
+					    </thead>
+					    <tbody id="body-tabla-pagos">
+					    	
+					    </tbody>
+					</table>
+				</div>
+			</div>
+			<div id="iframePDF"></div>
+		</div>
+	</div>
+
+	<div id="seccion-detalle-pago">
+		<div class="container">	
+			<button id="cerrar-detalle-pago" type="button" class="btn btn-primary btn-lg">
+		  		Cerrar
+			</button>		
+		
+			<div id="table-wrapper" class="row top-buffer">
+				<div id="table-scroll" class="table-wrapper">
+					<table class="table">
+					    <thead>
+					      	<tr>
+					        	<th>Tipo</th>
+					        	<th>Comprobante</th>
+					        	<th>Concepto</th>
+					        	<th>Total</th>
+					        	<th>Importe</th>					        	
+					      	</tr>
+					    </thead>
+					    <tbody id="body-tabla-pagos-detalle">
+					    	
+					    </tbody>
+					</table>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Contenedor modales-->
+<!-- Modal -->
+<div class="modal fade" id="modalConsulta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    <h4 class="modal-title" id="myModalLabel">Realizar consulta</h4>
+		  </div>
+		  <div class="modal-body">
+		    <form id="form-consulta" class='form-inline'>		
+				<div class="form-group">
+				  	<label for="fechaDesde">Desde</label>
+				  	<input class="form-control" type="date" value="2017-01-01" id="fechaDesde" name="fechaDesde">
+			  	</div>
+			  	<div class="form-group">
+				  	<label for="fechaHasta">Hasta</label>
+				  	<input class="form-control" type="date" value="2018-08-19" id="fechaHasta" name="fechaHasta">
+				</div>	<br>
+				<div class="form-group top-buffer">
+				  <label for="sel1">Campaña:</label>
+				  <select id="opciones-cosecha" class="form-control" name="cosecha" id="sel1">	
+				  	<option id="" value="default">Seleccionar Campaña</option>
+				  	<option id="37">15/16</option>	 
+					<option id="38">16/17</option>	    
+					<option id="39">17/18</option>	  
+				  </select>
+				</div>				
+				<div class="form-group top-buffer">
+				  <label for="sel1">Contrato:</label>
+				  <select id="opciones-contrato" class="form-control" name="contrato" id="sel1">
+				  	<option id="" value="default">Seleccionar Contrato</option>		    
+				  </select>
+				</div>	
+					
+			  	<div class="modal-footer">
+			        <button class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button id="btn-solicitar-consulta" class="btn btn-primary">Solicitar</button>
+			     </div>
+			</form>
+		  </div>      
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade" id="modalPDF" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  	<div class="modal-header">
+		    	<h4 class="modal-title" id="myModalLabel">Seleccione el PDF que desea descargar:</h4>
+		  	</div>
+		  	<div class="modal-body">
+		   		<button class="btn btn-default center-block" data-dismiss="modal" onclick='mostrarPDF_OP()'>Orden de Pago</button><br>
+			    <button class="btn btn-default center-block" data-dismiss="modal" onclick='mostrarPDF_RG()'>Retención de ganancias</button><br>
+			    <button class="btn btn-default center-block" data-dismiss="modal" onclick='mostrarPDF_RIB()'>Retención de Ingresos Brutos</button>
+			</div>      
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalFiltroPagos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Realizar consulta</h4>
+      </div>
+      <div class="modal-body">
+        <form id="form-filtro-pagos" class='form-inline' action='includes/consultas/consulta-pagos.php' method='POST'>		
+			<div class="form-group">
+			  	<label for="fechaDesde">Desde</label>
+			  	<input class="form-control" type="date" value="2017-01-01" id="fechaDesde" name="fechaDesde">
+		  	</div>
+		  	<div class="form-group">
+			  	<label for="fechaHasta">Hasta</label>
+			  	<input class="form-control" type="date" value="2018-01-01" id="fechaHasta" name="fechaHasta">
+			</div>			
+		  	<div class="modal-footer">
+		        <button class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button id="btn-solicitar-pagos" class="btn btn-primary">Solicitar</button>
+		    </div>
+		</form>
+      </div>      
+    </div>
+  </div>
+</div>
+
+	
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">       	
+  	<div class="alert alert-danger" role="alert">
+	  <div class="modal-body">   
+  	  </div>
+  	  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	</div>   
+  </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="cambiarContrasena">
+  <div class="modal-dialog" role="document">       	
+  	<div class="alert alert-danger" role="alert">
+	  <div class="modal-body"> 
+	  	<h4 class="modal-title" id="myModalLabel">Es necesario que cambie su contraseña</h4><br>  
+	  	<form id="form-contrasena-nueva" class='form-inline' action='includes/consultas/cambio-contrasena.inc.php' method='POST'>		
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input class='form-control' type='password' name='contrasena-nueva' placeholder='Ingrese su contraseña'>
+				</div>
+			</div>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input class='form-control' type='password' name='conf-contrasena-nueva' placeholder='Ingrese nuevamente su contraseña'>
+				</div>
+			</div>			
+		  	<div class="modal-footer">		        
+		        <button id="btn-solicitar-pagos" class="btn btn-primary">Cambiar</button>
+		    </div>
+		</form>
+  	  </div>  	 
+	</div>   
+  </div>
+</div>
+
+<div class="modal fade" id="modalConfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       	<h4 class="modal-title" id="myModalLabel">Seleccione las columnas que quiere visualizar</h4>
+      </div>
+      <div class="modal-body">
+        <form id="form-config" class='form-inline'>		
+			<div class='form-group'>					
+				<div class='col-sm-12'>					
+					<input id="columnaTipo" class='form-control' type="checkbox" checked> Tipo	 
+				</div>
+			</div>
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaCartaporte" class='form-control' type="checkbox" checked> Cartaporte
+				</div>
+			</div>	
+			<br>	
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaKgNeto" class='form-control' type="checkbox" checked> Kg. Neto
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaPHumedad" class='form-control' type="checkbox" checked> % Humedad
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaMermaHumedad" class='form-control' type="checkbox" checked> % Merma Humedad
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaMermaTierra" class='form-control' type="checkbox" checked> % Merma Tierra
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaMermaCpos" class='form-control' type="checkbox" checked> % Merma Cpos. ext.
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaSecosLimpios" class='form-control' type="checkbox" checked> Kg Secos Limpios
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaSueltos" class='form-control' type="checkbox" checked> % Sueltos
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaMani" class='form-control' type="checkbox" checked> % Mani
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaConfiteria" class='form-control' type="checkbox" checked> % Confiteria
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaNroCertificado" class='form-control' type="checkbox" checked> Nro Certificado
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaKilosSecos" class='form-control' type="checkbox" checked> Kilos Secos
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaTipoLugar" class='form-control' type="checkbox" checked> Tipo de Lugar
+				</div>
+			</div>	
+			<br>
+			<div class='form-group'>					
+				<div class='col-sm-12'>
+					<input id="columnaNombreCampo" class='form-control' type="checkbox" checked> Nombre Campo
+				</div>
+			</div>	
+			<br>	
+		  	<div class="modal-footer">		        
+		        <button id="btn-guardar-config" class="btn btn-primary">Guardar</button>
+		    </div>
+		</form>
+      </div>      
+    </div>
+  </div>
+</div>
+
+
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!-- PDF-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+
+<!-- Bootstrap-->>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script src="js/consultas/table2excel.js"></script>
+<script src="js/consultas/excel.js"></script>
+<script src="js/consultas/pantallas.js"></script>
+<script src="js/consultas/index.js"></script>
+<script src="js/consultas/consulta.js"></script>
+<script src="js/consultas/pagos.js"></script>
+<script src="js/consultas/print.js"></script>
+<script src="js/consultas/estadisticas.js"></script>
+
+</body>
+</html> 	
