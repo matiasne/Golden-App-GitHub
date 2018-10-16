@@ -446,8 +446,7 @@ $(document).ready(function () {
 
     $('#form-contrasena-nueva').on('submit', function(e) {
         
-        e.preventDefault();  
-
+        e.preventDefault(); 
         console.log("Falta método en login principal");       
     });
 
