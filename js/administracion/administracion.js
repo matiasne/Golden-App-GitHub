@@ -21,6 +21,8 @@ $(document).ready(function () {
 
         var usuario = $('#usuario-nombre').val();
 
+        ObtenerArchivos();
+
         $.ajax({
 
             url : $(this).attr('action') || window.location.pathname,
@@ -95,4 +97,103 @@ $(document).ready(function () {
         });
     });
 
+
+    $('#subir-archivo').on('submit', function(e) {
+        e.preventDefault();  
+
+        var usuario = $('#usuario-nombre').val();
+
+        var file_data = $('#file').prop('files')[0];   
+        var form_data = new FormData();                  
+        form_data.append('file', file_data);
+        form_data.append('nombreUsuario', usuario);   
+        
+        
+
+        console.log($(this).serialize());
+        $.ajax({
+
+            url : $(this).attr('action') || window.location.pathname,
+            type: "POST",
+            dataType: 'text',  // what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            success: function(response){  
+                 
+                ObtenerArchivos();
+               
+            },
+            error: function (jXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+                console.log(jXHR);
+            }
+        });
+    });     
 });
+
+function ObtenerArchivos(){
+
+    var usuario = $('#usuario-nombre').val();    
+    var form_data = new FormData(); 
+    form_data.append('nombreUsuario', usuario);       
+
+    $('#tabla-archivos').empty();
+
+    console.log($(this).serialize());
+    $.ajax({
+
+        url : 'includes/administracion/obtenerArchivos.php',
+        type: "POST",
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success: function(response){  
+             
+            console.log(response);
+            var obj = JSON.parse(response);
+            obj.archivos.forEach(element => {
+                if(element!="." && element!="..")
+                    $('#tabla-archivos').append("<tr><th>"+element+"</th><th><button onclick='onclickBorrar(\""+element+"\")' class='btn btn-default'>Borrar</button></th></tr>");
+            });
+           
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+            console.log(jXHR);
+        }
+    });
+
+}
+
+function onclickBorrar(nombreArchivo){
+   
+    var usuario = $('#usuario-nombre').val();    
+    var form_data = new FormData(); 
+    form_data.append('nombreArchivo', nombreArchivo);
+    form_data.append('nombreUsuario', usuario);        
+
+    console.log($(this).serialize());
+    $.ajax({
+
+        url : 'includes/administracion/eliminarArchivo.php',
+        type: "POST",
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success: function(response){  
+             
+            ObtenerArchivos();
+           
+        },
+        error: function (jXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+            console.log(jXHR);
+        }
+    });
+}

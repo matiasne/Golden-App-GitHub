@@ -4,6 +4,7 @@ function mostrarPantalla(pantalla){
   $("#seccion-usuario-existente").fadeOut();
   $("#seccion-nuevo-usuario").fadeOut();
   $("#seccion-estadisticas").fadeOut();
+  
 
   switch (pantalla){
 
@@ -28,6 +29,8 @@ function mostrarPantalla(pantalla){
           $("#seccion-estadisticas").fadeIn();          
       });
     break;
+
+    
 
   }
 }

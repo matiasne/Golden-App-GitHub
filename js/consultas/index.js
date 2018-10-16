@@ -322,6 +322,12 @@ $(document).ready(function () {
       }
     );
 
+    $("#btn-archivos").click( function(){
+      ObtenerArchivosCliente();
+      mostrarPantalla("archivos");
+    }
+  );
+
     $("#btn-solicitar-pagos").click(function(){        
         $('#modalFiltroPagos').modal('hide');
     });   
@@ -452,5 +458,43 @@ $(document).ready(function () {
     });
 
   });
+
+
+  
+function ObtenerArchivosCliente(){
+
+  var usuario = $('#usuario-nombre').val();    
+  var form_data = new FormData(); 
+  form_data.append('nombreUsuario', localStorage.getItem('usuario'));       
+  var nombreUsuario = localStorage.getItem('usuario');
+  $('#tabla-archivos').empty();
+
+  console.log($(this).serialize());
+  $.ajax({
+
+      url : 'includes/administracion/obtenerArchivos.php',
+      type: "POST",
+      dataType: 'text',  // what to expect back from the PHP script, if anything
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      success: function(response){  
+           
+          console.log(response);
+          var obj = JSON.parse(response);
+          obj.archivos.forEach(element => {
+              if(element!="." && element!="..")
+                  $('#tabla-archivos').append("<tr><th>"+element+"</th><th><a href='../goldenApp/includes/uploads/"+nombreUsuario.trim()+"/"+element.trim()+"'><button  class='btn btn-default'>Ver</button></th></tr></a>");
+          });
+         
+      },
+      error: function (jXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+          console.log(jXHR);
+      }
+  });
+
+}
 
 

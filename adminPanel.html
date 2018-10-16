@@ -93,11 +93,21 @@
 						</div>
 					</div>
 					<div class='form-group'>
-					<div class='col-sm-offset-2 col-sm-10'>
-						<button class='btn btn-default'>Actualizar</button> 
+						<div class='col-sm-offset-2 col-sm-10'>
+							<button class='btn btn-default'>Actualizar</button> 
+						</div>
 					</div>
-				</div>
 				</form>
+				<form id="subir-archivo" class='form-horizontal' action="includes/administracion/upload.php" method="POST">
+					Seleccione archivos para este usuario:
+					<input type="file" id="file" name="file" multiple>
+					<input type="submit" value="Subir Archivo" name="submit">
+				</form>
+			
+				<table id="tabla-archivos">
+					
+				</table>
+			
 			</div>
 		</div>
 

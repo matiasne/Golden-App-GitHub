@@ -12,10 +12,13 @@ function mostrarPantalla(pantalla){
     $("#seccion-consulta").fadeOut();
     $("#seccion-pagos").fadeOut();
     $("#seccion-detalle-pago").fadeOut();
+    $("#seccion-archivos").fadeOut();
 
   $("#btn-exportar").fadeOut();
   $("#btn-config").fadeOut();
   $("#btn-print").fadeOut();
+
+  
 
   switch (pantalla){
 
@@ -51,6 +54,12 @@ function mostrarPantalla(pantalla){
     case "detalle-pago":
       $("#pantalla-tablas").fadeIn(function() {         
           $("#seccion-detalle-pago").fadeIn();
+      });
+    break;
+
+    case "archivos":      
+      $("#pantalla-tablas").fadeIn(function() {
+          $("#seccion-archivos").fadeIn();          
       });
     break;
 
