@@ -42,11 +42,10 @@
 							</a> 
 						</li>			      	  
 				      	<li>
-				      		<a id="btn-logout" class="btn" data-toggle="collapse" data-target=".nav-collapse.in" onclick="logOut()">
-				      			<span class='glyphicon glyphicon-search' aria-hidden='true'></span>LOGOUT
-				      		</a> 
-						  </li> 
-						  
+							<a id="btn-logout" class="btn" data-toggle="collapse" data-target=".nav-collapse.in" onclick="logOut()">
+								<span class='glyphicon glyphicon-search' aria-hidden='true'></span>LOGOUT
+							</a> 
+						</li> 		  
 						  
 				    </ul>
 			    </div><!-- /.navbar-collapse -->
@@ -98,16 +97,18 @@
 						</div>
 					</div>
 				</form>
-				<form id="subir-archivo" class='form-horizontal' action="includes/administracion/upload.php" method="POST">
-					Seleccione archivos para este usuario:
-					<input type="file" id="file" name="file" multiple>
-					<input type="submit" value="Subir Archivo" name="submit">
+				<hr>
+				<div class="container">
+				<h3>Subir contratos:</h3>
+				<form id="subir-archivo" class='form-horizontal ' action="includes/administracion/upload.php" method="POST">
+					<input class='col-md-5 inline-block' type="file" id="file" name="file" multiple>
+					<input class='btn btn-default col-sm-2 inline-block' type="submit" value="Subir Archivo" name="submit">
 				</form>
 			
-				<table id="tabla-archivos">
+				<table id="tabla-archivos" class="table tabla-archivos">
 					
 				</table>
-			
+				</div>
 			</div>
 		</div>
 

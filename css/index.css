@@ -156,3 +156,21 @@ table {
 .chart-container{
     display: inline-block !important;
 }
+
+.inline-block{
+    display: inline-block !important;
+}
+
+.tabla-archivos{
+    margin-top:30px;
+    border:none;
+}
+
+.tabla-archivos tr{
+    margin-top:10px;
+}
+
+.tabla-archivos th{
+    
+    border:none;
+}

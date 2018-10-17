@@ -461,10 +461,9 @@ $(document).ready(function () {
 
   
 function ObtenerArchivosCliente(){
-
-  var usuario = $('#usuario-nombre').val();    
+ 
   var form_data = new FormData(); 
-  form_data.append('nombreUsuario', localStorage.getItem('usuario'));       
+  form_data.append('nombreUsuario', localStorage.getItem('idEntidad'));       
   var nombreUsuario = localStorage.getItem('usuario');
   $('#tabla-archivos').empty();
 

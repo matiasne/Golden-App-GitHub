@@ -6,6 +6,7 @@ function logOut(){
 $(document).ready(function () {       
 
     mostrarPantalla("principal");  
+    $('#tabla-archivos').empty();
     
     $("#btn-consulta-estadisticas").click( function(){
         mostrarPantalla("estadisticas");
@@ -30,12 +31,14 @@ $(document).ready(function () {
             data: $(this).serialize(),
             success: function(response){  
                  
-                 if(response == 'encontrado') {
-                    mostrarPantalla('datos-usuario'); 
+                console.log(response);
+                var obj = JSON.parse(response);
 
-                    $("#razon-social").text(localStorage.getItem('razonSocial'));                  
+                 if(obj.code == '200') {
+                    mostrarPantalla('datos-usuario'); 
+                    localStorage.setItem('identidadUsuario',obj.idEntidad);                                      
                  } 
-                 else if(response == 'inexistente'){
+                 else if(obj.code == '404'){
                     mostrarPantalla('crear-usuario');
                  }           
                  
@@ -101,7 +104,7 @@ $(document).ready(function () {
     $('#subir-archivo').on('submit', function(e) {
         e.preventDefault();  
 
-        var usuario = $('#usuario-nombre').val();
+        var usuario = localStorage.getItem('identidadUsuario');  
 
         var file_data = $('#file').prop('files')[0];   
         var form_data = new FormData();                  
@@ -135,7 +138,7 @@ $(document).ready(function () {
 
 function ObtenerArchivos(){
 
-    var usuario = $('#usuario-nombre').val();    
+    var usuario = localStorage.getItem('identidadUsuario');  
     var form_data = new FormData(); 
     form_data.append('nombreUsuario', usuario);       
 
@@ -171,7 +174,7 @@ function ObtenerArchivos(){
 
 function onclickBorrar(nombreArchivo){
    
-    var usuario = $('#usuario-nombre').val();    
+    var usuario = localStorage.getItem('identidadUsuario');  
     var form_data = new FormData(); 
     form_data.append('nombreArchivo', nombreArchivo);
     form_data.append('nombreUsuario', usuario);        

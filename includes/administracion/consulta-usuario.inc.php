@@ -13,13 +13,22 @@ $result = sqlsrv_query($conn, $query);
 $creado = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC);
 
 if($creado){
-	$ret = 'encontrado';
+	$resultado = array(
+		'code' => "200",
+		'idEntidad' => $creado["ID_ENTIDAD"]
+
+	);  
+	echo json_encode($resultado);
 }
 else{
-	$ret = 'inexistente';   	
+	$resultado = array(
+		'code' => "404",
+		'idEntidad' => $creado["ID_ENTIDAD"]
+
+	);  
+	echo json_encode($resultado);	
 }
 
-echo $ret;
 exit();
 
 /*$query = "SELECT * FROM MANI_ENTIDADES WHERE CD_CUIT='$cuit'"; //Verificamos si existe entidad en SOMPROAR 
