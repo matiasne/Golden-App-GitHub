@@ -22,6 +22,8 @@ $(document).ready(function () {
 
         var usuario = $('#usuario-nombre').val();
 
+        $('#razon-social').empty();   
+
         ObtenerArchivos();
 
         $.ajax({
@@ -36,7 +38,8 @@ $(document).ready(function () {
 
                  if(obj.code == '200') {
                     mostrarPantalla('datos-usuario'); 
-                    localStorage.setItem('identidadUsuario',obj.idEntidad);                                      
+                    localStorage.setItem('identidadUsuario',obj.idEntidad); 
+                    $('#razon-social').append(obj.razonSocial);                                     
                  } 
                  else if(obj.code == '404'){
                     mostrarPantalla('crear-usuario');
@@ -191,6 +194,7 @@ function onclickBorrar(nombreArchivo){
         data: form_data,
         success: function(response){  
              
+            console.log(response);
             ObtenerArchivos();
            
         },

@@ -15,15 +15,15 @@ $creado = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC);
 if($creado){
 	$resultado = array(
 		'code' => "200",
-		'idEntidad' => $creado["ID_ENTIDAD"]
+		'idEntidad' => $creado["ID_ENTIDAD"],
+		'razonSocial' => $creado["razon_social"],
 
 	);  
 	echo json_encode($resultado);
 }
 else{
 	$resultado = array(
-		'code' => "404",
-		'idEntidad' => $creado["ID_ENTIDAD"]
+		'code' => "404"
 
 	);  
 	echo json_encode($resultado);	

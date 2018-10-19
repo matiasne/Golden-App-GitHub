@@ -4,11 +4,15 @@
     
     $nombreUsuario = $_POST["nombreUsuario"];
     $nombreArchivo = $_POST["nombreArchivo"];
-    $target_dir = "../uploads/".$nombreUsuario."/";
-            
     
-    unlink($target_dir.$nombreArchivo);
+            
+    $include_delete = realpath(__DIR__ . '/..');
 
+    $delete_file = $include_delete."\\uploads\\".trim($nombreUsuario)."\\".$nombreArchivo;
+    
+    unlink($delete_file);
+
+    $target_dir = "..\\uploads\\".$nombreUsuario."\\";
     $ficheros1  = scandir($target_dir);
 
     $resultado = array(

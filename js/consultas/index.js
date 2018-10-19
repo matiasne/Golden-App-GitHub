@@ -464,7 +464,7 @@ function ObtenerArchivosCliente(){
  
   var form_data = new FormData(); 
   form_data.append('nombreUsuario', localStorage.getItem('idEntidad'));       
-  var nombreUsuario = localStorage.getItem('usuario');
+  var nombreUsuario = localStorage.getItem('idEntidad');
   $('#tabla-archivos').empty();
 
   console.log($(this).serialize());
