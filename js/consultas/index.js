@@ -246,8 +246,10 @@ function ObtenerInfoDelToken(){
         localStorage.setItem('admin',response.data.admin);
 
         var admin = response.data.admin;
-        if(admin){        
-
+        if(admin){ 
+          window.location.replace("adminPanel.html");
+        }
+        else if(response.data.nombre == "legal" ){
           window.location.replace("adminPanel.html");
         }
         else{

@@ -25,8 +25,8 @@ function mostrarPantalla(pantalla){
     case "inicio":
       $("#pantalla-tablas").fadeIn(function() {         
           $("#seccion-inicio").fadeIn();
-          if(localStorage.getItem('idPropiedad')!="102")
-            $("#btn-cuaderno-campo").hide();
+          //if(localStorage.getItem('idPropiedad')!="102")
+          //  $("#btn-cuaderno-campo").hide();
       });
     break;
 

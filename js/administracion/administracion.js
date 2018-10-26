@@ -5,6 +5,8 @@ function logOut(){
 
 $(document).ready(function () {       
 
+    $(".loader").fadeOut("slow");
+
     mostrarPantalla("principal");  
     $('#tabla-archivos').empty();
     
@@ -37,8 +39,16 @@ $(document).ready(function () {
                 var obj = JSON.parse(response);
 
                  if(obj.code == '200') {
-                    mostrarPantalla('datos-usuario'); 
-                    localStorage.setItem('identidadUsuario',obj.idEntidad); 
+
+                    if(localStorage.getItem('usuario')== "legal"){
+                        mostrarPantalla('contratos-usuario'); 
+                    }
+                    else{
+                        mostrarPantalla('datos-usuario'); 
+                    }
+                    
+                    localStorage.setItem('identidadUsuario',obj.idEntidad);
+                    console.log("Cargando razon social "+obj.razonSocial); 
                     $('#razon-social').append(obj.razonSocial);                                     
                  } 
                  else if(obj.code == '404'){
@@ -113,7 +123,7 @@ $(document).ready(function () {
         var form_data = new FormData();                  
         form_data.append('file', file_data);
         form_data.append('nombreUsuario', usuario);   
-        
+        $(".loader").fadeIn();
         
 
         console.log($(this).serialize());
@@ -129,7 +139,7 @@ $(document).ready(function () {
             success: function(response){  
                  
                 ObtenerArchivos();
-               
+                $(".loader").fadeOut("slow");
             },
             error: function (jXHR, textStatus, errorThrown) {
                 alert(errorThrown);

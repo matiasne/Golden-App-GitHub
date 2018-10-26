@@ -2,6 +2,7 @@ function mostrarPantalla(pantalla){
 
   $("#administracion").fadeOut();
   $("#seccion-usuario-existente").fadeOut();
+  $("#seccion-usuario-contratos").fadeOut();
   $("#seccion-nuevo-usuario").fadeOut();
   $("#seccion-estadisticas").fadeOut();
   
@@ -15,6 +16,12 @@ function mostrarPantalla(pantalla){
     case "datos-usuario":
        $("#administracion").fadeIn(function() {
           $("#seccion-usuario-existente").fadeIn();          
+      });
+    break;
+
+    case "contratos-usuario":
+       $("#administracion").fadeIn(function() {
+          $("#seccion-usuario-contratos").fadeIn();          
       });
     break;
 
